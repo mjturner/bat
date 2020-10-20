@@ -47,7 +47,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let out_dir = Path::new(&out_dir_env);
 
     fs::create_dir_all(out_dir.join("assets/manual")).unwrap();
-    fs::create_dir_all(out_dir.join("assets/completions")).unwrap();
+    fs::create_dir_all(out_dir.join("assets/completions/fish")).unwrap();
+    fs::create_dir_all(out_dir.join("assets/completions/zsh")).unwrap();
 
     template(
         &variables,
@@ -57,12 +58,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     template(
         &variables,
         "assets/completions/bat.fish.in",
-        out_dir.join("assets/completions/bat.fish"),
+        out_dir.join("assets/completions/fish/bat.fish"),
     )?;
     template(
         &variables,
         "assets/completions/bat.zsh.in",
-        out_dir.join("assets/completions/bat.zsh"),
+        out_dir.join("assets/completions/zsh/_bat"),
     )?;
 
     Ok(())
