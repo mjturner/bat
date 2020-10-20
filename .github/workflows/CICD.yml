@@ -200,7 +200,7 @@ jobs:
       run: |
         mkdir -p '${{ steps.vars.outputs.STAGING }}'
         mkdir -p '${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.PKG_BASENAME }}'
-        mkdir -p '${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.PKG_BASENAME }}/autocomplete/{fish,zsh}'
+        mkdir -p '${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.PKG_BASENAME }}/autocomplete'
         mkdir -p '${{ steps.vars.outputs.STAGING }}/dpkg'
     - name: Install Rust toolchain
       uses: actions-rs/toolchain@v1
@@ -283,6 +283,7 @@ jobs:
         cp "README.md" "LICENSE-MIT" "LICENSE-APACHE" "CHANGELOG.md" "$ARCHIVE_DIR"
 
         # Autocompletion files
+        mkdir -p "$ARCHIVE_DIR/autocomplete/{fish,zsh}"
         cp 'target/${{ matrix.job.target }}/release/build/${{ env.PROJECT_NAME }}'-*/out/assets/completions/bat.fish "$ARCHIVE_DIR/autocomplete/fish/${{ env.PROJECT_NAME }}.fish"
         cp 'target/${{ matrix.job.target }}/release/build/${{ env.PROJECT_NAME }}'-*/out/assets/completions/bat.zsh "$ARCHIVE_DIR/autocomplete/zsh/_${{ env.PROJECT_NAME }}"
 
