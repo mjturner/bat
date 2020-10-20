@@ -283,7 +283,8 @@ jobs:
         cp "README.md" "LICENSE-MIT" "LICENSE-APACHE" "CHANGELOG.md" "$ARCHIVE_DIR"
 
         # Autocompletion files
-        mkdir -p "$ARCHIVE_DIR/autocomplete/{fish,zsh}"
+        mkdir -p '$ARCHIVE_DIR/autocomplete/fish'
+        mkdir -p '$ARCHIVE_DIR/autocomplete/zsh'
         cp 'target/${{ matrix.job.target }}/release/build/${{ env.PROJECT_NAME }}'-*/out/assets/completions/bat.fish "$ARCHIVE_DIR/autocomplete/fish/${{ env.PROJECT_NAME }}.fish"
         cp 'target/${{ matrix.job.target }}/release/build/${{ env.PROJECT_NAME }}'-*/out/assets/completions/bat.zsh "$ARCHIVE_DIR/autocomplete/zsh/_${{ env.PROJECT_NAME }}"
 
